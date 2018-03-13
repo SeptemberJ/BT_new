@@ -3,96 +3,85 @@
   <div class="layout">
     <div class="content">
       <div v-bind:class="{ 'content-left': open}">
-        <mu-drawer :open="open" :docked="docked" @close="toggle()">
-          <mu-list @itemClick="docked ? '' : toggle()">
-            <mu-list-item disabled  class="TextCenter">
-              <img style="width: 115px;" src="static/img/logo.png">
-            </mu-list-item>
-            <mu-list-item class="TextCenter"><mu-icon value="cloud_download" color="orange"/><span class="DisplayBlock">物联网场景应用</span></mu-list-item>
-            <mu-list-item class="TextCenter"><mu-icon value="cloud_download" color="orange"/><span class="DisplayBlock">产品与服务</span></mu-list-item>
-            <mu-list-item class="TextCenter"><mu-icon value="cloud_download" color="orange"/><span class="DisplayBlock">公司</span></mu-list-item>
-            <mu-list-item v-if="docked" @click.native="open = false" title="Close"/>
-          </mu-list>
-        </mu-drawer>
+      <Sider/>
       </div>
       <div :class="{'content-right':open}">
         <div class="header">
-          <mu-appbar title="">
-            <mu-icon-button icon="menu" slot="left" @click="toggle()"/>
-            <mu-flat-button color="white" label="Hox云平台登入" slot="right"/>
-            <mu-flat-button color="white" label="热线电话:  400 880 2248" slot="right"/>
-            <mu-text-field icon="search" class="appbar-search-field"  slot="right" hintText="Search"/>
-          </mu-appbar>
+          <Header/>
         </div>
         <div class="body">
-          <mu-sub-header>阳光</mu-sub-header>
-          <mu-content-block>
-            <h1>散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。似乎在诉说着，我也可以在漆黑的角落里，找到阴影背后的阳光，找到阳光与阴影奏出和谐的旋律。我要用一颗敏感赤诚的心迎接每一缕滑过指尖的阳光！</h1>
-            <h1>散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。似乎在诉说着，我也可以在漆黑的角落里，找到阴影背后的阳光，找到阳光与阴影奏出和谐的旋律。我要用一颗敏感赤诚的心迎接每一缕滑过指尖的阳光！</h1>
-            <h1>散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。似乎在诉说着，我也可以在漆黑的角落里，找到阴影背后的阳光，找到阳光与阴影奏出和谐的旋律。我要用一颗敏感赤诚的心迎接每一缕滑过指尖的阳光！</h1>
-          </mu-content-block>
+          <Home/>
         </div>
         <div class="footer">
-          Muse-UI ©2017 Created by Muse-UI
+          <Footer/>
         </div>
       </div>
     </div>
   </div>
-    <!-- <div>
-  <mu-raised-button label="toggle drawer" @click="toggle()"/>
-  <mu-drawer right :open="open" @close="toggle()">
-    <mu-appbar title="Muse UI"/>
-    <mu-list>
-      <mu-list-item title="Menu Item 1"/>
-      <mu-list-item title="Menu Item 2"/>
-      <mu-list-item title="Menu Item 3"/>
-      <mu-list-item @click.native="open = false" title="Close"/>
-    </mu-list>
-  </mu-drawer>
-</div> -->
     <!-- <transition>
       <router-view class="child-view"></router-view>
     </transition> -->
   </div>
 </template>
 <script>
-//import TopBlock from 'components/PC/Common/TopBlock'
+import Header from 'components/Header/Header'
+import Sider from 'components/Sider/Sider'
+import Footer from 'components/Footer/Footer'
+import Home from 'page/SmartHox/Home'
   export default{
     data: function () {
       return {
         activeTab: 'tab1',
-      activeList: 'list1',
-      open:true,
-      docked: true
+        activeList: 'list1',
+        // open:true,
+        // docked: true
       }
     },
     mounted: function () {
       
     },
-    created: function () {
+    created() {
       
     },
     computed: {
+      open:{
+          get: function () {
+            return this.$store.state.open
+          },
+          set: function (newValue) {
+            this.$store.state.open = newValue
+          }
+      },
+      docked:{
+          get: function () {
+            return this.$store.state.docked
+          },
+          set: function (newValue) {
+            this.$store.state.docked = newValue
+          }
+      },
       
     },
     watch: {
       
     },
     components: {
-      
-
+      Header,
+      Sider,
+      Footer,
+      Home
     },
     methods: {
       toggle (flag) {
-        this.open = !this.open
-        this.docked = !flag
+        this.$store.state.open = !this.$store.state.open
+        this.$store.state.docked = !flag
       },
       handleTabChange (val) {
-      this.activeTab = val
-    },
-    handleListChange (val) {
-      this.activeList = val
-    }
+        this.activeTab = val
+      },
+      handleListChange (val) {
+        this.activeList = val
+      }
      
 
     }
@@ -131,7 +120,7 @@ $width: 150px;
 }
 
 .content-right{
-  border: 1px solid blue;
+  border: 0px solid blue;
   width: 100%;
   display: inline-block;
   float: right;
@@ -147,7 +136,7 @@ $width: 150px;
   }
 
   .content-right{
-    border: 1px solid red;
+    border: 0px solid red;
     width: calc(100% - #{$width});
     display: inline-block;
     float: right;
@@ -177,11 +166,11 @@ $width: 150px;
 .body{
   min-height: 500px;
   background-color: white;
-  margin: 40px 20px;
+  margin: 40px 5px;
 }
 
 .footer{
-  padding: 10px 0;
+  padding: 0;
   text-align: center;
 }
 </style>

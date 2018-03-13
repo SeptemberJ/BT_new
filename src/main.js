@@ -8,6 +8,9 @@ import VueResource from 'vue-resource'
 import 'babel-polyfill'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
+import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
+import iView from 'iview';
+import '../my-theme/dist/iview.css';
 Vue.use(MuseUI)
 
 // import 'theme/theme.less';
@@ -19,7 +22,7 @@ Vue.use(MuseUI)
 // Vue.use(VueDND)
 Vue.use(VueResource)
 Vue.use(Vuex)
-// Vue.use(iView)
+Vue.use(iView)
 // Vue.use(VueVideoPlayer)
 //开启debug模式
 Vue.config.debug = true

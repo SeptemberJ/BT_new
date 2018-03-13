@@ -1,5 +1,10 @@
+/*@import '//fonts.useso.com/css?family=Roboto:300,400,500,700,400italic';
+@import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css';*/
 html,body{  
             height: 100% !important;  
+        }
+        img{
+            display: inline-block !important;  
         }
         .mu-drawer{
             width: 150px !important;  
@@ -54,6 +59,8 @@ html,body{
         .colorGray{
           color: #989898;
         }
+
+
         .marginTB_10{
             margin: 10px auto;
         }
@@ -78,6 +85,12 @@ html,body{
         .marginR_10{
             margin-right: 10px;
         }
+        .margin_auto{
+            margin: 0 auto;
+        }
+
+
+
         .ivu-menu-vertical .ivu-menu-item, .ivu-menu-vertical .ivu-menu-submenu-title{
             padding: 10px 4px !important;
             text-align: center;
@@ -88,4 +101,21 @@ html,body{
         }
         .DisplayBlock{
             display: block;
+        }
+        .InlineBlock{
+            display: inline-block;
+        }
+        .FloatLeft{
+            clear: both;
+            float: left;
+        }
+        .WidthFull{
+            width: 100% !important;
+        }
+        .Bold{
+            font-weight: bold;
+        }
+
+        .CursorPointer{
+            cursor: pointer;
         }
